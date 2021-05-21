@@ -1,0 +1,146 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background: url(../img/empanadaFondo.jpg);
+    background-size: cover;
+}
+
+h1{
+    text-align: center;
+    color: white;
+    margin: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h2{
+    color: white;
+    margin-left: 1.5rem;
+    text-decoration: underline dashed orange;
+}
+
+span{
+    display: none;
+}
+
+.row{
+    width: 100%;
+    margin: auto;
+}
+
+.card{
+    border-radius:20px ;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid;
+    background-color: rgba(252, 155, 45, 0.726);
+}
+
+.table{
+    background-color: rgb(250, 181, 53);
+    text-align: center;
+    width: 90%;
+    margin: 2rem 5%;
+}
+
+table,th,td{
+    border: 2px solid black;
+    line-height: 2rem;
+}
+
+#montoFinal{
+    display: block;
+    margin-top: 1rem;
+    margin-left: 58%;
+    margin-right: 18%;
+    padding: 10px;
+    line-height: 3rem;
+    color: white;
+    border: solid black 3px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    background-color: rgb(233, 125, 62);
+}
+
+.btn-continuar{
+    background-color: rgb(255, 167, 5);
+    border: 2px solid black;
+}
+
+.card form input {
+    background-color: rgba(235, 235, 235, 0.863);
+    width: 100%;
+}
+
+#enviarPagar{
+    background-color: rgba(253, 180, 45, 0.904);
+    width: 40%;
+    border: 2px solid rgba(211, 122, 5, 0.973);
+    border-radius: 10px;
+    margin-left: 25%;
+    padding: 2rem;
+}
+
+#enviarPagar #telefono, #enviarPagar #direccion{
+    display: block;
+    width: 100%;
+}
+
+#enviarPagar #tarjetaCredito, #enviarPagar #segundoLabel{
+    margin-top: 1rem;
+}
+
+#enviarPagar button{
+    
+    margin-top: 1rem;
+    margin-left: 65%;
+    position: relative;
+}
+
+footer{
+    display: flex;
+    background-color: rgba(253, 200, 101, 0.836);
+    margin-top: 2rem;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+footer p{
+    margin-top: 1rem;
+    margin-bottom: 0%;
+    justify-content: end;
+    align-items: center;
+}
+
+
+#miModal {
+    display: none;
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto;
+    text-align: center;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #f3f3f3;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid rgb(199, 73, 0);
+    width: 80%;
+    color: black;
+}
+
+.close {
+    display: block;
+    font-size: 28px;
+    width: 40px;
+    padding: 0;
+    margin-right: 0;
+    margin-left: 95%;
+    border: none;
+}
