@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
-    <h1>Empanadería Doña Mirtha
-    </h1>
+    <div class="presentacion">
+        <h1>Empanadería Doña Mirtha</h1>
+        <img src="img/mirthaLogo.jpg" alt="Logo de empanadería" class="logo">
+    </div>
     <h2>Nuestras empanadas</h2>
     <div class="row row-cols-1 row-cols-md-4 g-5" id="divPadre"></div>
     <div>
@@ -31,11 +33,6 @@
         <input type="text" id="direccion" required>
         <label for="telefono" id="segundoLabel">Telefono:</label>
         <input type="tel" id="telefono" required>
-        <label for="pago">Método de pago:</label>
-        <input type="radio" name="pago" id="tarjetaCredito" value="tarjetaCredito" checked>
-        <label for="tarjetaCredito">Tarjeta de credito</label>
-        <input type="radio" name="pago" id="tarjetaDebito" value="tarjetaDebito">
-        <label for="tarjetaDebito">Tarjeta de debito</label>
         <button class="btn-continuar">Continuar</button>
     </form>
     <div id="miModal" class="modal">
@@ -43,6 +40,10 @@
             <button class="close">&times;</button>
             <p>La orden fue enviada con éxito!</p>
         </div>  
+    </div>
+    <div class="pronto">
+        <h3>Proximamente llegaran las pizzas</h3>
+        <img src="img/mirthaPizza.jpg" alt="La mirtha comiendo zzapi">
     </div>
     <footer>
         <h5>Empanadería doña Mirtha</h5>
