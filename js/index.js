@@ -6,13 +6,16 @@ const URLJSON1 = "data/empanadas.json"
 const empanadas = []
 
 $.getJSON(URLJSON1, function (respuesta, estado) {
+
     if(estado === "success"){
+
         let productos = respuesta;
+
         for (const producto of productos) {
             empanadas.push(producto)
         }
     }
-    });
+});
 
 const paraPlantilla = [{empanada: "Jamón y Queso", precio: 80, form: "form-empanada-JQ", input: "cantJQ"},
                         {empanada: "Carne Suave", precio: 90, form: "form-empanada-CS", input: "cantCS"},
@@ -221,8 +224,10 @@ let direccion = localStorage.getItem('direccion');
 let telefono = localStorage.getItem('telefono');
 
 if((direccion !== null)&&(direccion !== "null")){
+
     const inputDireccion = document.getElementById("direccion");
     const inputTelefono = document.getElementById("telefono");
+
     inputDireccion.setAttribute("value",direccion);
     inputTelefono.setAttribute("value",telefono);
 }
