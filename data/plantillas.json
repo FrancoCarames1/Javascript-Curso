@@ -1,0 +1,5 @@
+[{"id": 1, "empanada": "Jamón y Queso", "precio": 80, "form": "form-empanada-JQ", "input": "cantJQ"},
+{"id": 2, "empanada": "Carne Suave", "precio": 90, "form": "form-empanada-CS", "input": "cantCS"},
+{"id": 3, "empanada": "Carne Picante", "precio": 100, "form": "form-empanada-CP", "input": "cantCP"},
+{"id": 4, "empanada": "Pollo", "precio": 85, "form": "form-empanada-PL", "input": "cantPL"},
+{"id": 5, "empanada": "Choclo", "precio": 100, "form": "form-empanada-CL", "input": "cantCL"}]

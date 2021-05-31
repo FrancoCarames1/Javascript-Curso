@@ -129,6 +129,8 @@ footer p{
 
 .modal-content {
     background-color: #f3f3f3;
+    background-image: url(../img/confeti.png);
+    background-size: cover;
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid rgb(199, 73, 0);
@@ -182,6 +184,13 @@ legend{
     display: flex;
     justify-content: center;
     margin-top: 2rem;
+}
+
+.besito{
+    margin: 0 auto 1rem auto;
+    width: 60%;
+    border: 3px solid rgb(247, 172, 184);
+    border-radius: 20px;
 }
 
 @media (max-width: 800px){

@@ -2,6 +2,7 @@
 
 const ajaxUrl = "http://localhost:3000/ordenes"
 const URLJSON1 = "data/empanadas.json"
+const URLJSON2 = "data/plantillas.json"
 
 const empanadas = []
 
@@ -15,13 +16,7 @@ $.getJSON(URLJSON1, function (respuesta, estado) {
             empanadas.push(producto)
         }
     }
-});
-
-const paraPlantilla = [{empanada: "Jamón y Queso", precio: 80, form: "form-empanada-JQ", input: "cantJQ"},
-                        {empanada: "Carne Suave", precio: 90, form: "form-empanada-CS", input: "cantCS"},
-                        {empanada: "Carne Picante", precio: 100, form: "form-empanada-CP", input: "cantCP"},
-                        {empanada: "Pollo", precio: 85, form: "form-empanada-PL", input: "cantPL"},
-                        {empanada: "Choclo", precio: 100, form: "form-empanada-CL", input: "cantCL"}];
+})
 
 
 function existe(arrayE, idEmpanada, cantidadE, numeroPosicionArray) {
@@ -48,93 +43,110 @@ function existe(arrayE, idEmpanada, cantidadE, numeroPosicionArray) {
     }
 }
 
-for (const plantillaVisual of paraPlantilla){
-let plantilla = document.createElement("div");
-plantilla.setAttribute("class","col");
-plantilla.innerHTML = `<div class="card">
-                            <h4 class="card-title"> ${plantillaVisual.empanada}</h4>
-                            <form class="formEmpanadas" id="${plantillaVisual.form}">
-                                <p>Cantidad:</p>
-                                <input type="number" id="${plantillaVisual.input}" min="0">
-                                
-                            </form>
-                            <p class="card-body">Precio por unidad: ${plantillaVisual.precio} $</p>
-                        </div>`;
+function listandoOrden(inputCantidad, arrayOrden, formEscuchado) {
 
-$("#divPadre").append(plantilla);}
+    const cantidad = inputCantidad.value;
+
+    const arrayActual = paraPlantilla.find(x => x.form === formEscuchado);
+
+    const posicionArray = empanadas.findIndex(x => x.id === arrayActual.id);
+
+    existe(arrayOrden, arrayActual.id, cantidad, posicionArray)
+}
+
+
+const paraPlantilla = [];
 
 let nuevaOrden = [];
 
-const inputCantidadJQ = document.getElementById("cantJQ");
+$.getJSON(URLJSON2, function (respuesta, estado) {
 
-$("#form-empanada-JQ").change( (event) => {
+    if(estado === "success"){
 
-    const cantidad = inputCantidadJQ.value;
+        let productos = respuesta;
 
-    existe(nuevaOrden, 1, cantidad, 0);
+        for (const producto of productos) {
 
-    console.log(nuevaOrden);
+            paraPlantilla.push(producto)
 
-    $("#carro").trigger("click");
-})
+        }
+        for (const plantillaVisual of paraPlantilla){
 
-const inputCantidadCS = document.getElementById("cantCS");
+            let plantilla = document.createElement("div");
 
-$("#form-empanada-CS").change( (event) => {
+            plantilla.setAttribute("class","col");
 
-    const cantidad = inputCantidadCS.value;
+            plantilla.innerHTML = `<div class="card">
+                                        <h4 class="card-title"> ${plantillaVisual.empanada}</h4>
+                                        <form class="formEmpanadas" id="${plantillaVisual.form}">
+                                            <p>Cantidad:</p>
+                                            <input type="number" id="${plantillaVisual.input}" min="0" value="0">
+                                            
+                                        </form>
+                                        <p class="card-body">Precio por unidad: ${plantillaVisual.precio} $</p>
+                                    </div>`;
 
-    existe(nuevaOrden, 2, cantidad, 1);
+            $("#divPadre").append(plantilla);
 
-    console.log(nuevaOrden);
+        }
 
-    $("#carro").trigger("click");
-})
+        const inputCantidadJQ = document.getElementById("cantJQ");
 
-const inputCantidadCP = document.getElementById("cantCP");
+        $("#form-empanada-JQ").change( (event) => {
 
-$("#form-empanada-CP").change( (event) => {
+            listandoOrden(inputCantidadJQ, nuevaOrden, "form-empanada-JQ")
 
-    const cantidad = inputCantidadCP.value;
+            $("#carro").trigger("click");
 
-    existe(nuevaOrden, 3, cantidad, 2);
+        })
 
-    console.log(nuevaOrden);
+        const inputCantidadCS = document.getElementById("cantCS");
+        
+        $("#form-empanada-CS").change( (event) => {
 
-    $("#carro").trigger("click");
-})
+            listandoOrden(inputCantidadCS, nuevaOrden, "form-empanada-CS")
 
-const inputCantidadPL = document.getElementById("cantPL");
+            $("#carro").trigger("click");
 
-$("#form-empanada-PL").change( (event) => {
+        })
 
-    const cantidad = inputCantidadPL.value;
+        const inputCantidadCP = document.getElementById("cantCP");
 
-    existe(nuevaOrden, 4, cantidad, 3);
+        $("#form-empanada-CP").change( (event) => {
 
-    console.log(nuevaOrden);
+            listandoOrden(inputCantidadCP, nuevaOrden, "form-empanada-CP")
 
-    $("#carro").trigger("click");
-})
+            $("#carro").trigger("click");
 
-const inputCantidadCL = document.getElementById("cantCL");
+        })
 
-$("#form-empanada-CL").change( (event) => {
+        const inputCantidadPL = document.getElementById("cantPL");
 
-    const cantidad = inputCantidadCL.value;
+        $("#form-empanada-PL").change( (event) => {
 
-    existe(nuevaOrden, 5, cantidad, 4);
+            listandoOrden(inputCantidadPL, nuevaOrden, "form-empanada-PL")
 
-    console.log(nuevaOrden);
+            $("#carro").trigger("click");
 
-    $("#carro").trigger("click");
-})
+        })
+        const inputCantidadCL = document.getElementById("cantCL");
 
-$(".formEmpanadas").submit( function(event){
+        $("#form-empanada-CL").change( (event) => {
+
+            listandoOrden(inputCantidadCL, nuevaOrden, "form-empanada-CL")
+
+            $("#carro").trigger("click");
+
+        })
+
+        $(".formEmpanadas").submit( function(event){
     
-    event.preventDefault()
-    
-})
+            event.preventDefault()
+            
+        })
+
+    }
+});
 
 const tabla = document.getElementById("tabla");
 
@@ -146,9 +158,7 @@ $("#carro").click( function(){
 
     if ( tabla.childElementCount === 1 ){
 
-        const ordenFiltrada = nuevaOrden.filter(orden => orden.cantidad > 0);
-
-        console.log(ordenFiltrada);
+        const ordenFiltrada = nuevaOrden.filter(orden => orden.cantidad > 0)
 
         let montoFinal = 0;
 
