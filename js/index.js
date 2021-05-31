@@ -217,6 +217,7 @@ $("#carro").click( function(){
                                     <td> ${precioConjunto}$ </td>`;
 
             tabla.appendChild(contenedor);
+
         }
 
         $("table").fadeIn("slow")
@@ -246,6 +247,10 @@ formPago.addEventListener("submit",(event) => {
 
     event.preventDefault();
 
+    const ordenFiltrada = nuevaOrden.filter(orden => orden.cantidad > 0);
+    
+    const lengthOrdenFiltrada = ordenFiltrada.length;
+
     const inputDireccion = document.getElementById("direccion");
     const inputTelefono = document.getElementById("telefono");
 
@@ -255,28 +260,36 @@ formPago.addEventListener("submit",(event) => {
     localStorage.setItem("direccion", guardarDireccion);
     localStorage.setItem("telefono", guardarTelefono);
 
-    let ordenFinal = {Direccion: guardarDireccion, Telefono: guardarTelefono, Orden: nuevaOrden};
+    if (lengthOrdenFiltrada === 0){
+        alert("La cantidad de empanadas mínima pedida debe ser 1")
+    }else{
 
-    console.log(ordenFinal)
+        let ordenFinal = {Direccion: guardarDireccion, Telefono: guardarTelefono, Orden: ordenFiltrada};
 
-    $.post(ajaxUrl, ordenFinal, (response, status) =>{
-        if(status === "success"){
+        console.log(ordenFinal)
 
-            console.log(status)
-            console.log(response)
+        $.post(ajaxUrl, ordenFinal, (response, status) =>{
 
-            $("#miModal").css({
+            if(status === "success"){
 
-                'display': 'block'
-            
-            });
+                console.log(status)
+                console.log(response)
 
-        }else{
+                $("#miModal").css({
 
-            alert("Error")
+                    'display': 'block'
+                
+                });
 
-        }   
-    })
+            }else{
+
+                alert("Error")
+
+            }   
+        })
+
+    }
+
 })
 
 $(".close").click(function(){
